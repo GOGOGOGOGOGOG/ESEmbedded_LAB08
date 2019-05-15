@@ -120,6 +120,8 @@
 #define USART_SR_OFFSET 0x00
 #define TXE_BIT 7
 #define RXNE_BIT 5
+#define RXNEIE_BIT 5
+
 
 #define USART_DR_OFFSET 0x04
 
@@ -139,4 +141,51 @@
 
 #define NVIC_ISERn_OFFSET(n) (0x00 + 4 * (n))
 
+
+// GPIO
+#define GPIO_SET_READY 0X01
+#define GPIO_SET_fail 0x00
+#define GPIO_Pin(x)  (x)
+typedef enum {
+
+GPIO_Mode_IN   = 0x00, 
+GPIO_Mode_OUT  = 0x01, 
+GPIO_Mode_AF   = 0x02,
+GPIO_Mode_AN = 0x03 
+} GPIO_MODE_def;
+
+typedef enum {
+
+GPIO_Type_pp = 0x00,
+GPIO_Type_OD = 0x01
+
+} GPIO_TYPE_def;
+
+typedef enum {
+GPIO_High_speed = 0x03 ,
+GPIO_Fast_speed = 0x02,
+GPIO_Medium_speed = 0x01,
+GPIO_Low_speed = 0x00
+
+} GPIO_SPEED_def;
+
+typedef enum
+{ 
+GPIO_PuPd_nopull = 0x00,
+GPIO_PuPd_up     = 0x01,
+GPIO_PuPd_down   = 0x02
+}GPIO_PUPD_def;
+typedef struct GPIO_initdef 
+{
+  uint32_t GPIO_Pin;              
+
+  GPIO_MODE_def GPIO_Mode;    
+
+  GPIO_SPEED_def GPIO_Speed;   
+
+
+  GPIO_TYPE_def GPIO_OType; 
+
+  GPIO_PUPD_def  GPIO_PuPd;    
+} GPIO_InitDef;
 #endif
